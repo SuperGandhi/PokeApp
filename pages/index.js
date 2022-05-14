@@ -1,6 +1,9 @@
+import Link from 'next/Link'
+
 const Pokemon = ({pokemon}) =>{
+  const id= pokemon.url.split('/').filter(x => x).pop()
   return (
-    <li>{pokemon.name}</li>
+    <li><Link href={`pokemones/${id}`}>{pokemon.name}</Link></li>
   )
 }
 
@@ -15,6 +18,8 @@ export default function Pokemons({pokemons}) {
     </div>
   )
 }
+
+// properties statics
 
 export const getStaticProps =  async () =>{
   const response = await  fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
